@@ -1,0 +1,24 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+        <span class="fs-4">Categories</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="{% url 'mov:all_movies' %}" class="nav-link"
+               style="{% if not category %}background-color: #001D6E;color: white;{% else %}color: #001D6E;{% endif %}"
+               aria-current="page">
+                All
+            </a>
+        </li>
+        {% for c in categories %}
+            <li class="nav-item">
+                <a href="{{ c.get_absolute_url }}" class="nav-link"
+                   style="{% if category == c %}background-color: #001D6E;color: white;{% else %}color: #001D6E;{% endif %}"
+                   aria-current="page">
+                    {{ c.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

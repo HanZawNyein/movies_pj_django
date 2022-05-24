@@ -1,0 +1,32 @@
+{% extends 'mov/base/base.html' %}
+{% load static %}
+{% block title %}
+    {{ movie.name }}
+{% endblock %}
+
+{% block content %}
+    <div class="container p-5 bg-light">
+        <div class="row">
+            <div class="col">
+                <img style="width: 30%;"
+                     src="{% if movie.poster %}/media/{{ movie.poster }}{% else %}{% static 'mov/img/No_image_available.svg.webp' %}{% endif %}">
+            </div>
+            <div class="col">
+                <div class="row">
+                    <h5>{{ movie.name }} ({{ movie.production }})</h5>
+                    <p class="h5">
+                        {% for category in movie.category.all %}
+                        <a style="color:#001D6E;"  href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+                         {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    </p>
+                <p class="h5">Type : {{ movie.type }}</p>
+                </div>
+            </div>
+        </div>
+    <hr/>
+        <div class="row">
+            <p>{{ movie.review }}</p>
+        </div>
+    </div>
+{% endblock %}

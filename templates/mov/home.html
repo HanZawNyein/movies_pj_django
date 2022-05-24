@@ -1,0 +1,8 @@
+{% extends 'mov/base/base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <h1>{% if category %}{{ category.name }}{% else %}All{% endif %}</h1>
+    <hr/>
+    {% include 'mov/components/movie.html' with movies=movies %}
+    {% include 'mov/components/pagination.html' with page=page_obj %}
+{% endblock %}
